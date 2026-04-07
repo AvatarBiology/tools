@@ -48,7 +48,7 @@ const categories = [
   },
   {
     title: '課程講義',
-    description: '結合生物學科與資訊科技的教學教材',
+    description: '基礎生物課堂筆記式講義',
     icon: BookOpen,
     color: 'from-amber-400 to-orange-400',
     links: [
