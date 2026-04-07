@@ -2,15 +2,13 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ['main', 'master'] # 當推送到 main 或 master 分支時觸發
+    branches: ['main', 'master']
 
-# 設定 GITHUB_TOKEN 的權限以允許部署到 GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 允許一個並發的部署
 concurrency:
   group: "pages"
   cancel-in-progress: true
