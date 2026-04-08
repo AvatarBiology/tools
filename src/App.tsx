@@ -20,7 +20,11 @@ import {
   Leaf,
   AlertTriangle,
   Clock,
-  LucideIcon
+  LucideIcon,
+  Sparkles,
+  RefreshCw,
+  Presentation,
+  Bot
 } from 'lucide-react';
 
 type LinkItem = {
@@ -37,7 +41,9 @@ type Category = {
   description: string;
   icon: LucideIcon;
   color: string;
+  textColor: string;
   links: LinkItem[];
+  fullWidthSection?: boolean;
 };
 
 const categories: Category[] = [
@@ -46,6 +52,7 @@ const categories: Category[] = [
     description: '提供學生進行探究實作與自主學習的數位鷹架',
     icon: GraduationCap,
     color: 'from-emerald-400 to-cyan-400',
+    textColor: 'text-emerald-400/80 group-hover:text-emerald-400',
     links: [
       { name: 'SRC專題研究引導工具', url: 'https://avatarbiology-src.netlify.app/', icon: Search, desc: '引導學生進行科學專題研究的系統化工具' },
       { name: 'CER數位論證系統', url: 'https://avatarbiology-cer.netlify.app/', icon: Microscope, desc: '主張、證據、推論的科學論證寫作平台' },
@@ -58,6 +65,7 @@ const categories: Category[] = [
     description: '輔助教師評量、追蹤與分析學生學習成效',
     icon: Users,
     color: 'from-indigo-400 to-purple-400',
+    textColor: 'text-indigo-400/80 group-hover:text-indigo-400',
     links: [
       { name: '自主學習評量助手', url: 'https://avatarbiology.github.io/sdl-helper/', icon: ClipboardCheck, desc: '協助教師快速進行自主學習計畫評量' },
       { name: 'CER 論證探究 (教師端)', url: 'https://docs.google.com/spreadsheets/d/1Qo24IlZTUZ-kZ7-48_vN-uHQ07Syaxwi66-xHHfR2CU/edit?usp=sharing', icon: BookOpen, desc: '批閱與管理學生的 CER 論證內容' },
@@ -69,17 +77,47 @@ const categories: Category[] = [
     description: '結合生物學科與資訊科技的教學教材',
     icon: BookOpen,
     color: 'from-amber-400 to-orange-400',
+    textColor: 'text-amber-400/80 group-hover:text-amber-400',
     links: [
       { name: '鷹架式引導教學講義', url: 'https://drive.google.com/drive/folders/1BnzE-9qzCs7vVoeJuB5gCXAnDLsRNizJ?usp=sharing', icon: BookOpen, desc: '雲端講義資料夾' },
     ]
   },
   {
-    title: '學生成果',
-    description: '展現學生在跨領域學習中的優異表現',
+    title: '競賽與社團指導',
+    description: '展現學生在跨領域學習與課外活動中的優異表現',
     icon: Trophy,
     color: 'from-pink-400 to-rose-400',
+    textColor: 'text-pink-400/80 group-hover:text-pink-400',
     links: [
       { name: '競賽相關成果', url: 'https://drive.google.com/drive/folders/1QXyKiZ9rptpPt6vulyRZZDwAh75vlpms?usp=sharing', icon: Trophy, desc: '雲端成果資料夾' },
+    ]
+  },
+  {
+    title: '特色教學設計與學生成果表現',
+    description: '展示多元教學策略與學生實際產出成果',
+    icon: Sparkles,
+    color: 'from-violet-400 to-fuchsia-400',
+    textColor: 'text-fuchsia-400/80 group-hover:text-fuchsia-400',
+    fullWidthSection: true,
+    links: [
+      {
+        name: '翻轉課室與合作學習 (選修生物II：植物激素單元)',
+        url: 'https://drive.google.com/drive/folders/11lGFX9_XMHerZLq7g3XZS7uW5Y9CRWnJ?usp=sharing',
+        icon: RefreshCw,
+        desc: '透過合作學習模式，引導學生分組認識植物激素、釐清作用原理、瞭解實際農業應用，讓學生扮演老師模擬授課方式呈現，翻轉課室，讓學習更深入。'
+      },
+      {
+        name: '資訊蒐集與表達練習 (高一生物：演化單元)',
+        url: 'https://drive.google.com/drive/folders/1rHOQMy9IhmXBIWJ4tZHAf0wXnJ6_9wWM?usp=sharing',
+        icon: Presentation,
+        desc: '透過報告內容設計，引導學生進行物種分類階層、尋找演化證據、繪製演化樹的能力，過程中教導學生資訊蒐集、簡報呈現方式，並於報告發表時使用行動載具(平板或手機)進行同儕互評，讓學生相互觀摩與回饋學習。'
+      },
+      {
+        name: '資訊及科技融入教學 (自主學習課程)',
+        url: 'https://drive.google.com/drive/folders/1W0WpF7bwv6M7qBZ42yDOy_tKKqQRDOsJ?usp=sharing',
+        icon: Bot,
+        desc: '引導學生使用生成式AI，以蘇格拉底式的互動諮詢模式，對有興趣的議題進行探索、聚焦，最終產出自己的自主學習題目；教導學生以適當的提問方法，有效率的深入議題、協助探究，最後產出自主學習規劃表、期中簡報與成果報告等。'
+      }
     ]
   }
 ];
@@ -133,7 +171,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
-              className="flex flex-col"
+              className={`flex flex-col ${category.fullWidthSection ? 'lg:col-span-2' : ''}`}
             >
               <div className="flex items-center space-x-4 mb-6">
                 <div className={`p-3 rounded-xl bg-gradient-to-br ${category.color}`}>
@@ -145,7 +183,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-grow">
+              <div className={`grid gap-4 flex-grow ${category.fullWidthSection ? 'grid-cols-1 lg:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
                 {category.links.map((link) => (
                   <a
                     key={link.name}
@@ -159,7 +197,7 @@ export default function App() {
                     }`}
                   >
                     <div className="flex justify-between items-start mb-4">
-                      <div className={`p-2 rounded-lg ${link.pending ? 'bg-slate-800/50 text-slate-500' : 'bg-slate-800 text-slate-300 group-hover:text-emerald-400 transition-colors'}`}>
+                      <div className={`p-2 rounded-lg ${link.pending ? 'bg-slate-800/50 text-slate-500' : `bg-slate-800/80 ${category.textColor} transition-colors`}`}>
                         <link.icon className="w-5 h-5" />
                       </div>
                       {!link.pending && (
@@ -170,7 +208,7 @@ export default function App() {
                       )}
                     </div>
                     
-                    <h3 className={`text-lg font-medium mb-2 ${link.pending ? 'text-slate-500' : 'text-slate-200 group-hover:text-white transition-colors'}`}>
+                    <h3 className={`text-lg font-bold mb-2 transition-colors duration-300 ${link.pending ? 'text-slate-500' : category.textColor}`}>
                       {link.name}
                     </h3>
                     
