@@ -19,10 +19,28 @@ import {
   Code2,
   Leaf,
   AlertTriangle,
-  Clock
+  Clock,
+  LucideIcon
 } from 'lucide-react';
 
-const categories = [
+type LinkItem = {
+  name: string;
+  url: string;
+  icon: LucideIcon;
+  desc: string;
+  pending?: boolean;
+  warning?: boolean;
+};
+
+type Category = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  color: string;
+  links: LinkItem[];
+};
+
+const categories: Category[] = [
   {
     title: '學生端工具',
     description: '提供學生進行探究實作與自主學習的數位鷹架',
@@ -42,17 +60,17 @@ const categories = [
     color: 'from-indigo-400 to-purple-400',
     links: [
       { name: '自主學習評量助手', url: 'https://avatarbiology.github.io/sdl-helper/', icon: ClipboardCheck, desc: '協助教師快速進行自主學習計畫評量' },
-      { name: 'CER 論證探究 (教師端)', url: 'https://script.google.com/macros/s/AKfycbyErVzL0hWvlzQ6eMrXI9HjAO8Jkj-M_64ovfV7bEgI5yqS2zkis7UA0kpKeYqQhpdg/exec', icon: BookOpen, desc: '批閱與管理學生的 CER 論證內容' },
-      { name: '學生學習成效儀表板', url: 'https://script.google.com/macros/s/AKfycbxkQqulv9KA-c4RVJhAJiqiO1yW9rmBBVQuC59pJ1XCFLja-e8Q7pV2gEBLgHIPpeON/exec', icon: LineChart, desc: '視覺化學習數據分析', warning: true },
+      { name: 'CER 論證探究 (教師端)', url: 'https://docs.google.com/spreadsheets/d/1Qo24IlZTUZ-kZ7-48_vN-uHQ07Syaxwi66-xHHfR2CU/edit?usp=sharing', icon: BookOpen, desc: '批閱與管理學生的 CER 論證內容' },
+      { name: '專題評分系統-演化', url: 'https://ai.studio/apps/drive/10XcplHyEiLTjlhz-DxK3gWC_bTy8IHWa?fullscreenApplet=true', icon: ClipboardCheck, desc: '協助教師進行專題發表評分與回饋' },
     ]
   },
   {
     title: '課程講義',
-    description: '基礎生物課堂筆記式講義',
+    description: '結合生物學科與資訊科技的教學教材',
     icon: BookOpen,
     color: 'from-amber-400 to-orange-400',
     links: [
-      { name: '鷹架式引導教學講義', url: '#', icon: BookOpen, desc: '陸續更新中...', pending: true },
+      { name: '鷹架式引導教學講義', url: 'https://drive.google.com/drive/folders/1BnzE-9qzCs7vVoeJuB5gCXAnDLsRNizJ?usp=sharing', icon: BookOpen, desc: '雲端講義資料夾' },
     ]
   },
   {
@@ -61,7 +79,7 @@ const categories = [
     icon: Trophy,
     color: 'from-pink-400 to-rose-400',
     links: [
-      { name: '競賽相關成果', url: '#', icon: Trophy, desc: '陸續更新中...', pending: true },
+      { name: '競賽相關成果', url: 'https://drive.google.com/drive/folders/1QXyKiZ9rptpPt6vulyRZZDwAh75vlpms?usp=sharing', icon: Trophy, desc: '雲端成果資料夾' },
     ]
   }
 ];
